@@ -36,7 +36,8 @@
 | 날짜 | 출제 기관 | 문제 |
 | -------- | -------- | -------- |
 | 2021.12.13 | 2021 KAKAO BLIND RECRUITMENT| [메뉴 리뉴얼](https://programmers.co.kr/learn/courses/30/lessons/72411)|
-| 2021.12.13     | 2021 KAKAO BLIND RECRUITMENT | [순위 검색](https://programmers.co.kr/learn/courses/30/lessons/72412) |
+| 2021.12.13 | 2021 KAKAO BLIND RECRUITMENT | [순위 검색](https://programmers.co.kr/learn/courses/30/lessons/72412)|
+| 2021.12.14 | 2021 KAKAO 채용연계형 인턴십 | [표 편집](https://programmers.co.kr/learn/courses/30/lessons/81303)|
 
 ## 스프린트 캘린더
 [wiki](https://github.com/boostcampwm-2021-iOS10-Jipjung/Study-Algorithm/wiki) 참조
