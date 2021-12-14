@@ -25,39 +25,41 @@ func makeCandidate(order: String) -> Set<String> {
         }
     }
 
-    result = [String](repeating: "", count: order.count + 1)
+    result = [String](repeating: "", count: order.count) // 임시 저장공간을 order의 길이만큼 만들어준다
     combiDFS(phase: 0, startIndex: 0, result: result)
     
     return candidate
 }
 
 func solution(_ orders:[String], _ course:[Int]) -> [String] {
-    var answer = [String: Int]()
+    var temp = [String: Int]() // "AB": 횟수
+
     for element in orders {
         makeCandidate(order: element).forEach { candidate in
-            if let count = answer[candidate] {
-                answer.updateValue(count + 1, forKey: candidate)
+            if let count = temp[candidate] {
+                temp.updateValue(count + 1, forKey: candidate)
             } else {
-                answer[candidate] = 1
+                temp[candidate] = 1
             }
         }
     }
     
-    let over1 = answer.filter{ course.contains($0.key.count)}
-        .filter { $0.value > 1 && $0.key.count > 1} // 반복횟수 2회 이상
+    let over1 = temp
+        .filter { course.contains($0.key.count) }
+        .filter { $0.value > 1 && $0.key.count > 1 } // 반복횟수 2회 이상
 
-    var words = [[(String, Int)]](repeating: [], count: 10)
+    var words = [[(String, Int)]](repeating: [], count: 11)
     over1.forEach {
         words[$0.key.count].append(($0.key, $0.value)) // 글자 길이별로 분리
     }
 
-    var ans = [String]()
+    var answer = [String]()
     for size in (0..<words.count) { // 반복횟수가 높은 순으로 정렬
         words[size].sort { $0.1 > $1.1 }
         if let firstItem = words[size].first {
             for element in words[size] {
                 if element.1 >= firstItem.1 { // 같은 반복숫자만 자르기
-                    ans.append(element.0)
+                    answer.append(element.0)
                 } else {
                     break
                 }
@@ -65,16 +67,5 @@ func solution(_ orders:[String], _ course:[Int]) -> [String] {
         }
     }
 
-    return ans.sorted()
+    return answer.sorted()
 }
-
-let sol1 = solution(["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"], [2,3,4]) // ["AC", "ACDE", "BCFG", "CDE"]
-print(sol1)
-
-let sol2 = solution(["ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"], [2,3,5]) // ["ACD", "AD", "ADE", "CD", "XYZ"]
-print(sol2)
-
-let sol3 = solution(["XYZ", "XWY", "WXA"], [2,3,4]) // ["WX", "XY"]
-print(sol3)
-
-
