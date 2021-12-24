@@ -40,5 +40,7 @@
 | 2021.12.14 | 2021 KAKAO 채용연계형 인턴십 | [표 편집](https://programmers.co.kr/learn/courses/30/lessons/81303)|
 | 2021.12.14 | 2021 KAKAO 채용연계형 인턴십 | [거리두기 확인하기](https://programmers.co.kr/learn/courses/30/lessons/81302)|
 
+- 이후 issue에 작성함
+
 ## 스프린트 캘린더
 [wiki](https://github.com/boostcampwm-2021-iOS10-Jipjung/Study-Algorithm/wiki) 참조
