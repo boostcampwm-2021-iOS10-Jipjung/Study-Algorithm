@@ -50,3 +50,6 @@ print(Solution().secondMinimum(2,
 2))
 print(Solution()._stop_time(3,5))
 print(Solution()._stop_time(6,5))
+print(Solution()._stop_time(946,183))
+print(Solution()._stop_time(2044,183))
+print(Solution()._stop_time(7672,172))
