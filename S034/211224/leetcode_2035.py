@@ -1,11 +1,16 @@
-from itertools import combinations
-
 class Solution:
     def minimumDifference(self, nums: List[int]) -> int:
-        sum_nums = sum(nums)
-        n = len(nums) // 2
-        n_combinations = combinations(nums, n)
-        answer = sum(map(abs, nums))
-        for combination in n_combinations:
-            answer = min(answer, abs(sum_nums - 2 * sum(combination)))
+        sorted_nums = sorted(nums)
+        left_index = 0
+        right_index = len(sorted_nums) // 2
+        sums_nums = sum(sorted_nums)
+        sums_subnums = sum(sorted_nums[:right_index])
+        answer = abs(sums_nums - sums_subnums * 2)
+        print(sums_nums, sums_subnums)
+        while right_index < len(nums):
+            print(answer)
+            sums_subnums += -sorted_nums[left_index] + sorted_nums[right_index]
+            answer = min(answer, abs(sums_nums - sums_subnums * 2))
+            left_index += 1
+            right_index += 1
         return answer
