@@ -1,9 +1,14 @@
-# n^2 4분짜리 문제
 class Solution:
     def maximumDifference(self, nums: List[int]) -> int:
         result = -1
-        for i in range(len(nums)):
-            for j in range(i + 1, len(nums)):
-                if nums[j] > nums[i]:
-                    result = max(result, nums[j] - nums[i])
+        _max = -1
+        _min = 1000000000 + 1
+        for num in nums:
+            if num < _min:
+                _min = num
+                _max = -1
+            elif num > _min:
+                if num > _max:
+                    _max = num
+                result = max(result, _max - _min)
         return result
