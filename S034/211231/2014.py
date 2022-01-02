@@ -2,7 +2,8 @@ from collections import Counter, deque
 
 class Solution:
     def longestSubsequenceRepeatedK(self, s: str, k: int) -> str:
-        cands = list("".join(char * (count // k) for char, count in Counter(s).items()))
+        # cands = list("".join(char * (count // k) for char, count in Counter(s).items()))
+        cands = [char for char, count in Counter(s).items() if count >= k]
         cands.sort()
         
         def is_repeated(seq):
@@ -17,6 +18,7 @@ class Solution:
                     i = 0
                 if count == k:
                     return True
+            return False
         
         q = deque([""])
         answer = ""
