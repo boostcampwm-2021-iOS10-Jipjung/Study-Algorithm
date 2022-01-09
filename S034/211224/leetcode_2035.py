@@ -1,16 +1,16 @@
+from itertools import combinations
+from bisect import bisect_left
+
 class Solution:
     def minimumDifference(self, nums: List[int]) -> int:
-        sorted_nums = sorted(nums)
-        left_index = 0
-        right_index = len(sorted_nums) // 2
-        sums_nums = sum(sorted_nums)
-        sums_subnums = sum(sorted_nums[:right_index])
-        answer = abs(sums_nums - sums_subnums * 2)
-        print(sums_nums, sums_subnums)
-        while right_index < len(nums):
-            print(answer)
-            sums_subnums += -sorted_nums[left_index] + sorted_nums[right_index]
-            answer = min(answer, abs(sums_nums - sums_subnums * 2))
-            left_index += 1
-            right_index += 1
-        return answer
+        n = len(nums) // 2
+        lefts, rights = nums[:n], nums[n:]
+        left_sum, right_sum = sum(lefts), sum(rights)
+        ans = abs(left_sum - right_sum)
+        
+        for i in range(1, n):
+            left_diffs = sorted(sum(comb) * 2 - left_sum for comb in combinations(lefts, i))
+            for right_diff in map(lambda comb: sum(comb) * 2 - right_sum, combinations(rights, i)):
+                index = bisect_left(left_diffs, right_diff, 0, len(left_diffs) - 1)
+                ans = min(ans, abs(left_diffs[index] - right_diff))
+        return ans
